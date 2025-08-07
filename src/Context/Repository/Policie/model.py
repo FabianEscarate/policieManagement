@@ -15,3 +15,6 @@ class Policie(SQLModel, table=True):
     planSalud: str
     prima: int = Field()
     estado: policieStatus
+
+class UpdateStatePolicie(SQLModel):
+    estado:policieStatus | None = Field(default=None)

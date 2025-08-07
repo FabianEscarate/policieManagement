@@ -23,3 +23,13 @@ class policieRepository():
         with self.Engine.getSession().__next__() as session:
             policies = session.exec(select(modelPolicie)).all()
             return policies
+        
+    def updatePolicie(self,idPolicie: str, policie: modelPolicie):
+        with self.Engine.getSession().__next__() as session:
+            dbPolicie = session.get(modelPolicie, idPolicie)
+            policieUpdate = policie.model_dump(exclude_unset=True)
+            dbPolicie.sqlmodel_update(policieUpdate)
+            session.add(dbPolicie)
+            session.commit()
+            session.refresh(dbPolicie)
+            return dbPolicie
