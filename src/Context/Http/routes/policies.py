@@ -12,9 +12,9 @@ policieRoutes = APIRouter()
 def validateInternalErrors(result):
     if not "code" in result:
         return False
-    if result.code == 5001:
+    if result.get("code") == 5001:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=result.get("message"))
-    if result.code == 5004:
+    if result.get("code") == 5004:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=result.get("message"))
     
     return True
@@ -23,17 +23,14 @@ def validateInternalErrors(result):
 @policieRoutes.post("", status_code=status.HTTP_201_CREATED, response_model=Policie)
 def postPolicie(policie: createPolicie):
     result = addPolicie().run(policie)
-    print('routes ',result)
-    if "code" in result:
-        raise HTTPException(status_code=400, detail=result.get("message"))
+    validateInternalErrors(result)
     return result
     
 @policieRoutes.get("/{id}", status_code=status.HTTP_200_OK)
 def getPolicie(id: UUID):
-    policie = getPolicieById().run(id)
-    if not policie:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="policie not found")
-    return policie
+    result = getPolicieById().run(id)
+    validateInternalErrors(result)
+    return result
 
 @policieRoutes.get("",status_code=status.HTTP_200_OK, response_model=List[Policie])
 def getAll():

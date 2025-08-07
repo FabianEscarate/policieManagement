@@ -6,4 +6,7 @@ class getPolicieById():
     repository = policieRepository()
 
     def run(self, idPolicie:str) -> Policie | None:
-        return self.repository.getPolicieById(idPolicie)
+        policie = self.repository.getPolicieById(idPolicie)
+        if not policie:
+            return {"code": 5004, "message": "policie not found"}
+        return policie
