@@ -6,6 +6,8 @@ from src.Context.Repository.main import Engine, Session
 from src.Context.Repository.Policie.policieRepository import policieRepository
 from src.App.Policies.addPolicie import addPolicie
 
+from uuid import UUID
+
 
 mock_session = MagicMock()
 
@@ -58,6 +60,7 @@ def test_get_policy_by_id():
         assert response.status_code == 200
         assert response.json() == mockResponse
         mock_getPolicieById.assert_called()
+        mock_getPolicieById.assert_called_with(UUID(policy_id))
 
 def test_create_policy_already_exist():
     new_policy = {

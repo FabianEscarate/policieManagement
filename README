@@ -15,6 +15,11 @@ examen tecnico solicitado por cliente
     poetry run uvicorn src.Main:app --reload
 ```
 
+## Testing
+```bash
+    poetry run pytest
+```
+
 ## Decisiones técnicas 
 - como lenguaje de programacion se usa `python`
 - como estructura de la solucion se intenta implementar `arquitectura hexagonal`
