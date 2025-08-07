@@ -1,0 +1,24 @@
+# policie Management API
+
+examen tecnico solicitado por cliente
+
+![alt text](image.png)
+
+## Requisitos
+
+    -  python >=3.13
+    -  poetry 2.1.4
+
+## Como Ejecutar
+```bash
+    poetry install
+    poetry run uvicorn src.Main:app --reload
+```
+
+## Decisiones técnicas 
+- como lenguaje de programacion se usa `python`
+- como estructura de la solucion se intenta implementar `arquitectura hexagonal`
+- como framework web/api se usa `FastApi`
+- como base de datos se usa `SQLite`
+- como ORM se usa `SQLModel` el cual ya viene en `FastApi`
+- para validaciones se usa `pydantic` el cual ya viene en `FastApi`
