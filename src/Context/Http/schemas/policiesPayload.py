@@ -9,7 +9,7 @@ class policieStatus(str, Enum):
     annulled = 'Anulada'
 
 class createPolicie(BaseModel):
-    id:UUID
+    id:UUID | None = None
     rutTitular: str
     fechaEmision: datetime
     planSalud: str

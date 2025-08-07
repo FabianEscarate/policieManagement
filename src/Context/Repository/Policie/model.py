@@ -9,7 +9,7 @@ class policieStatus(str, Enum):
     annulled = 'Anulada'
 
 class Policie(SQLModel, table=True):
-    id: UUID = Field(default_factory=uuid4, primary_key=True)
+    id: UUID | None = Field(default_factory=uuid4, primary_key=True)
     rutTitular: str = Field(index=True)
     fechaEmision: datetime
     planSalud: str
