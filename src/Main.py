@@ -1,7 +1,5 @@
-from fastapi import FastAPI
+from src.Context.Http.server import Server
 
-app = FastAPI()
+App = Server()
 
-@app.get("/")
-def read_root():
-    return {"mensaje": "¡Hola FastAPI con Poetry!"}
+app = App.run()
